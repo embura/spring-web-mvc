@@ -1,0 +1,10 @@
+app:
+  message: This is the property file to the ${spring.application.name} DEV
+spring:
+  datasource:
+  driver-class-name: org.h2.Driver
+  url: jdbc:h2:men:db;DB_CLOSE_DELAY=-1
+  username: sa
+  password: sa
+server:
+  port: 8080
