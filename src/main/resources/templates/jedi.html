@@ -6,25 +6,26 @@
 </head>
 
 <body>
+  <main>
 
-  <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}" style="color:green"/>
+    <h1>Jedi forces</h1>
 
-  <h1>Jedi forces</h1>
+    <table style="text-align:left">
+      <tr>
+        <th>NAME</th>
+        <th>LASTNAME</th>
+      </tr>
+      <tr th:each="jedi : ${allJedi}">
+        <td th:text="${jedi.name}"> </td>
+        <td th:text="${jedi.lastName}"> </td>
+      </tr>
+    </table>
 
-  <table>
-    <tr>
-      <th>NAME</th>
-      <th>LASTNAME</th>
-    </tr>
-    <tr th:each="jedi : ${allJedi}">
-      <td th:text="${jedi.name}"> </td>
-      <td th:text="${jedi.lastName}"> </td>
-    </tr>
-  </table>
+    <br>
 
-  <br>
+    <a href="#" th:href="@{/new-jedi}">New Jedi</a>
 
-  <a href="#" th:href="@{/new-jedi}">New Jedi</a>
-
+  </main>
 </body>
 </html>
