@@ -48,14 +48,13 @@ public class JediResource {
     @PostMapping("/api/jedi")
     public ResponseEntity<Jedi>  Create(@Valid @RequestBody Jedi jedi) throws URISyntaxException {
         final Jedi jediSaved = repository.save(jedi);
-        URI uri = new URI(String.format("http://localhost:8080/api/jedi/%d",jediSaved.getId()));
+        final URI uri = new URI(String.format("http://localhost:8080/api/jedi/%d",jediSaved.getId()));
 
-        return ResponseEntity.created(uri).body(jediSaved);
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/api/jedi/{id}")
     public ResponseEntity<Jedi> updateJedi(@PathVariable("id") Long id, @Valid @RequestBody Jedi jedi ){
-
         final Optional<Jedi> jediOptional = repository.findById(id);
 
         if(jediOptional.isEmpty()){
@@ -68,6 +67,18 @@ public class JediResource {
         jediUpdated.setLastName(jedi.getLastName());
 
         return ResponseEntity.ok(repository.save(jediUpdated));
+    }
+
+    @DeleteMapping("/api/jedi/{id}")
+    public ResponseEntity deleteJedi(@PathVariable("id") Long id){
+        final Optional<Jedi> jedi = repository.findById(id);
+
+        if(jedi.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        repository.delete(jedi.get());
+        return ResponseEntity.noContent().build();
     }
 
 
