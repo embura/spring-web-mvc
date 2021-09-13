@@ -1,0 +1,14 @@
+spring:
+  h2:
+    console:
+    enabled: true
+    path: h2
+  datasource:
+    url: jdbc:h2:file:~/jedi
+    username: sa
+    password:
+    driver-class-email: org.h2.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
